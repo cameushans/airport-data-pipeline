@@ -1,0 +1,13 @@
+{
+    "name": "events-sink",
+    "config": {
+        "connector.class": "org.apache.iceberg.connect.IcebergSinkConnector",
+        "tasks.max": "2",
+        "topics": "events",
+        "iceberg.tables": "default.events",
+        "iceberg.catalog.type": "hadoop",
+        "iceberg.catalog": "spark_catalog",
+        "iceberg.catalog.uri": "https://localhost",
+        "iceberg.catalog.warehouse": "iceberg_warehouse"
+        }
+    }

@@ -12,6 +12,9 @@ from processing.batch.airport.schema import airport
 from processing.batch.employee.schema import employee
 from processing.batch.flight.schema import fligt_schema
 from processing.batch.weatherdata.schema import weather_data_schema
+from src.processing.batch.shared.utils.Loader import load_data
+from processing.batch.passenger.schema_migration import apply_passenger_migrations
+
 
 
 load_dotenv()
@@ -58,11 +61,14 @@ def main():
     ## After that comes the load task 
     # Data will be shared via XCOM as AN INTER PROCESS COMMUNICATION MECANISM in AIRFLOW
     
-    # load_data function will be called here
-    # The challenge here is to map the name of the table we want to create in iceberg with the corresponding Dataframe
-
-    for df in extracted_df: 
-        df.show(10)
+    # as the data is processed in the same process, do i really need to use airflow ?
+    # i can just pass the value in a functionnal manner from extract -> load without the burden of using airflow
+    
+ 
+    for key , value in  zip(extracted_df.keys(), extracted_df.items()):
+        apply_passenger_migrations.apply_passenger_migrations(spark, key)
+        # Here all migrations will be applied before loading the data
+        load_data(spark, key, value)
     
 
 if __name__ == "__main__":

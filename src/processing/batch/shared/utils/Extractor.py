@@ -33,11 +33,10 @@ class Extract():
 
     
 def extract(domain, spark, kafka_bootstrap_servers):
-    dfs = []
+    dfs = {}
     for topic_name, schema in zip(domain.keys(), domain.values()):
        d =  Extract(schema, spark, kafka_bootstrap_servers, topic_name, extract_fields(schema))
-       dfs.append(d.get_df())
-        
+       dfs[topic_name] = d.get_df()
 
     return dfs 
 

@@ -1,15 +1,11 @@
 from pyspark.sql import SparkSession, DataFrame
 
-def load_data(spark: SparkSession, df: DataFrame):
-    for df in df:
-        df.createOrReplaceTempView(f"temp_{domain}_table")
+def load_data(spark: SparkSession, domain: str, df: DataFrame):
+    
+    for key in domain.keys():
+        df.createOrReplaceTempView(f"temp_{key}_table")
         
         spark.sql(f"""
-        INSERT INTO airportdb.{domain}
-        SELECT * FROM temp_{domain}_table
-        """)
-        
-        
-def load(ti: any):
-        input_data = ti.xcom_pull(task_ids="Extract_From_Kafka")
-        load_data(input_data)        
+        INSERT INTO airportdb.{key}
+        SELECT * FROM temp_{key}_table
+        """)    

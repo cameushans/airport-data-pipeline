@@ -1,7 +1,7 @@
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DecimalType, DateType
 
 employee_schema = StructType([
-    StructField("before", StructType([
+    StructField("after", StructType([
         StructField("employee_id", IntegerType(), True),
         StructField("firstname", StringType(), True),
         StructField("lastname", StringType(), True),

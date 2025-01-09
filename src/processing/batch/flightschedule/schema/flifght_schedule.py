@@ -1,7 +1,7 @@
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, BooleanType
 
 flight_schedule_schema = StructType([
-    StructField("before", StructType([
+    StructField("after", StructType([
         StructField("flightno", StringType(), True),
         StructField("from", IntegerType(), True),
         StructField("to", IntegerType(), True),

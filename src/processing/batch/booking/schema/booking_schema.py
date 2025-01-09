@@ -2,7 +2,7 @@ from pyspark.sql.types import StructType, StructField, StringType, IntegerType, 
 
 
 booking_schema = StructType([
-    StructField("before", StructType([
+    StructField("after", StructType([
         StructField("booking_id", IntegerType(), True),
         StructField("flight_id", StringType(), True),
         StructField("seat", StringType(), True),

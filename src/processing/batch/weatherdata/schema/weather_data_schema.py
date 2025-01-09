@@ -1,7 +1,7 @@
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, LongType
 
 weather_data_schema = StructType([
-    StructField("before", StructType([
+    StructField("after", StructType([
         StructField("log_date", IntegerType(), True),
         StructField("time", IntegerType(), True),
         StructField("station", StringType(), True),

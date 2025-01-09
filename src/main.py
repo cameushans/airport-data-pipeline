@@ -58,6 +58,9 @@ def main():
     ## After that comes the load task 
     # Data will be shared via XCOM as AN INTER PROCESS COMMUNICATION MECANISM in AIRFLOW
     
+    # load_data function will be called here
+    # The challenge here is to map the name of the table we want to create in iceberg with the corresponding Dataframe
+
     for df in extracted_df: 
         df.show(10)
     

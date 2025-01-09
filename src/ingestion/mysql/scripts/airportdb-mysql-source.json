@@ -1,0 +1,28 @@
+{
+  "name": "mysql-connect",
+  "config": {
+    "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+    "tasks.max": "1",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "database.hostname": "localhost",
+    "database.port": "3306",
+    "database.user": "kafka",
+    "database.password": "kafka",
+    "database.dbname": "airportdb",
+    "database.server.name": "mysql",
+    "topic.prefix": "mysql-airportdb",
+    "table.include.list": ".*",
+    "database.server.id": "12345",
+    "topic.creation.default.replication.factor": 3,
+    "topic.creation.default.partitions": 24,
+    "compression.type": "gzip",
+    "schema.history.internal.kafka.bootstrap.servers": "192.168.121.142:9092,192.168.121.51:9092,192.168.121.141:9092",
+    "database.history": "io.debezium.storage.kafka.history.KafkaSchemaHistory",
+    "schema.history.internal.kafka.topic": "schemahistory.airportdb"
+
+
+
+  }
+}
+

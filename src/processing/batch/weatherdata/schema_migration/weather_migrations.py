@@ -1,8 +1,8 @@
 from pyspark.sql import SparkSession
 
-def apply_weather_migrations(spark: SparkSession):
-    spark.sql("""
-    CREATE TABLE IF NOT EXISTS airportdb.weatherdata (
+def apply_weather_migrations(spark: SparkSession, key: str):
+    spark.sql(f"""
+    CREATE TABLE IF NOT EXISTS {key} (
     log_date DATE,
     time TIMESTAMP,  -- Remplacer TIME par TIMESTAMP
     station INTEGER,

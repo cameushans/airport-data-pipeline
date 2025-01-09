@@ -12,8 +12,11 @@ from processing.batch.airport.schema import airport
 from processing.batch.employee.schema import employee
 from processing.batch.flight.schema import fligt_schema
 from processing.batch.weatherdata.schema import weather_data_schema
-from src.processing.batch.shared.utils.Loader import load_data
+from processing.batch.airport.schema_migration import airport_migrations
+from processing.batch.flight.schema_migration import flight_migrations
+from processing.batch.shared.utils.Loader import load_data
 from processing.batch.passenger.schema_migration import apply_passenger_migrations
+from processing.batch.weatherdata.schema_migration import weather_migrations
 
 
 
@@ -67,6 +70,9 @@ def main():
  
     for key , value in  zip(extracted_df.keys(), extracted_df.items()):
         apply_passenger_migrations.apply_passenger_migrations(spark, key)
+        airport_migrations.apply_airport_migrations(spark, key)
+        flight_migrations.apply_flight_migrations(spark, key)
+        weather_migrations.apply_weather_migrations(spark, key)
         # Here all migrations will be applied before loading the data
         load_data(spark, key, value)
     

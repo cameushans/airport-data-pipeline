@@ -2,7 +2,7 @@ from typing import List
 from annotated_types import T
 from pyspark.sql import SparkSession, DataFrame
 
-def load_data(spark: SparkSession, df: List[T]):
+def load_data(spark: SparkSession, df: DataFrame):
     for df in df:
         df.createOrReplaceTempView(f"temp_{domain}_table")
         

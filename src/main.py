@@ -52,9 +52,14 @@ def main():
     domain[weatherdata_topic_name] = weather_data_schema.weather_data_schema
     
     extracted_df = Extractor.extract(domain, spark, kafka_bootstrap_servers)
+    ## This is the task to be added in an airflow dag
+    
+    
+    ## After that comes the load task 
+    # Data will be shared via XCOM as AN INTER PROCESS COMMUNICATION MECANISM in AIRFLOW
     
     for df in extracted_df: 
-        df.show()
+        df.show(10)
     
 
 if __name__ == "__main__":
